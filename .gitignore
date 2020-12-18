@@ -1,0 +1,7 @@
+# Log Files
+*.log
+*.pid
+*.pyc
+*.zip
+/transmembrane_demo/settings.py
+/tmhpredict

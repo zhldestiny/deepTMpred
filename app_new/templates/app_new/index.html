@@ -1,0 +1,119 @@
+{% extends 'app_new/layout/basic.html' %}
+{% load static %}
+
+{% block title %} index {% endblock %}
+
+
+{% block css %}
+<!--    <link rel="stylesheet" href="{% static 'css/account.css' %}">-->
+    <style>
+        .slider-container{
+            max-width: 100%;
+        }
+        .fullwidthbanner-container {
+            width: 80% !important;
+            position: relative;
+            max-height: 470px !important;
+            overflow: hidden;
+            background-image: url({% static "img/loader.gif" %});
+            background-repeat: no-repeat;
+            background-position: 50%;
+            padding: 0;
+            visibility: hidden;
+            margin: 0 auto;
+        }
+        .fullwidthbanner{
+            width: 1170px !important;
+        }
+        div.justify {
+            text-align: justify; font-size:16px;
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <!-- Content Start -->
+    <div id="main">
+    <!-- Slider Start-->
+    <div class="slider-container">
+        <div class="fullwidthbanner-container">
+       <div class="fullwidthbanner rslider">
+          <ul>
+             <!-- THE FIRST SLIDE -->
+             <li data-slotamount="1" data-masterspeed="300" data-transition="slidedown">
+                    <img src="{% static 'img/slider/slider_1.png' %}" style="max-width:100%; max-height:100%;" alt="deepTMpred">
+             </li>
+             <!-- THE second SLIDE -->
+             <li data-transition="slidedown" data-slotamount="1" data-masterspeed="300">
+                 <img src="{% static 'img/slider/workflow_1.png' %}" style="max-width:100%; max-height:100%;" alt="workflow">
+             </li>
+             <!-- THE third SLIDE -->
+              <li data-transition="slidedown" data-slotamount="1" data-masterspeed="300">
+                    <img src="{% static 'img/slider/case_protein_2.png' %}" style="max-width:100%; max-height:100%;" alt="caseProtein">
+             </li>
+          </ul>
+       </div>
+    </div>
+    </div>
+    <!-- Slider End-->
+    <!-- Slogan Start-->
+    <div class="slogan bottom-pad-small">
+       <div class="container">
+          <div class="row">
+             <div class="slogan-content">
+                <div class="col-lg-9 col-md-9">
+                   <h2 class="slogan-title">We design and develop the DeepTMpred server!</h2>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                   <div class="get-started">
+                       <a href={% url "webserver" %} >
+                        <button class="btn btn-special btn-color pull-right">Get Started Now</button>
+                       </a>
+                   </div>
+                </div>
+                <div class="clearfix"></div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <!-- Slogan End-->
+    <!-- Main Content start-->
+    <div class="main-content">
+       <div class="container">
+            <div class="introduction">
+                <h1 style="text-transform: uppercase;color: #6059f6;margin-bottom: 15px;">Introduction</h1>
+                <div class="justify">
+                    &nbsp;&nbsp; Transmembrane proteins (TMPs) are essential for cell recognition and communication,
+                    and they serve as important drug targets in humans. Transmembrane proteins' 3D structures
+                    are critical for figuring out their functions and drug design but are hard to determine
+                    by some experimental methods. Although some computational methods have been developed to
+                    predict transmembrane helices (TMHs) and orientation, there is still room for improvement.
+                    Considering that the pre-training language model can make full use of massive unlabeled
+                    protein sequences to obtain latent feature representation for TMPs, we proposed DeepTMpred,
+                    which uses pre-trained self-supervised language models called ESM, convolutional neural
+                    networks, conditional random fields for alpha-TMP topology prediction.
+                    Compared with the current state-of-the-art tools on a non-redundant dataset of TMPs,
+                    DeepTMpred can demonstrate the superior predictive performance at th F1 score of TMH segments.
+                    Furthermore, due to the inclusion of latent information from the pre-trained language model,
+                    our model could also obtain pretty reliable prediction results for TMPs lacking sufficient
+                    evolutionary information.
+                    <br />
+                    <br />
+                    <br />
+                </div>
+            </div>
+        </div>
+       </div>
+    </div>
+    <!-- Main Content end-->
+
+    </div>
+    <!-- Content End -->
+{% endblock %}
+
+
+{% block js %}
+    <script>
+    </script>
+{% endblock %}

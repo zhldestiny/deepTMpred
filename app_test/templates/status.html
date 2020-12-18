@@ -1,0 +1,204 @@
+{% extends 'layout/basic.html' %}
+{% load static %}
+
+{% block title %} init {% endblock %}
+
+
+{% block css %}
+<!--    <link rel="stylesheet" href="{% static 'css/account.css' %}">-->
+    <style>
+        .div-a{ float:left;width:20%;border:1px solid #F00}
+        .div-b{ float:left;width:20%;border:1px solid #000}
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container" style="height:200px" id="status">
+        <h3>Status: {{ status }} </h3>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Job ID: <span>{{ pid }}</span>
+            </div>
+            <div class="panel-body">
+                <ul class="nav nav-pills nav-justified step step-arrow">
+                    <li id="submitted">
+                        <a>submitted</a>
+                    </li>
+                    <li id="job_waiting">
+                        <a>job_waiting</a>
+                    </li>
+                    <li id="job_running">
+                        <a>job_running</a>
+                    </li>
+                    <li id="job_finished">
+                        <a>job_finished</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Modal</h4>
+                    </div>
+                    <div class="modal-body">
+                        Please press Ctrl+D to add this website to your bookmark!
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="alert" style="background-color:#F4F4F4;border-color:#DDDDDD">
+            <h4 style="margin-bottom:0px">Predict Protein Transmembrane</h4>
+            <table width="100%"  cellspacing="0">
+                <tr>
+                    <td>Result:</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Sequence:</td>
+                    <td style="word-break:break-all; word-wrap: break-word;">{{ result.sequence }}</td>
+                </tr>
+                <tr>
+                    <td>Orientation:</td>
+                    <td>{{ result.orientation }}</td>
+                </tr>
+                <tr>
+                    <td>Topo:</td>
+                    <td>{{ result.topo }}</td>
+                </tr>
+                <tr>
+                    <td>Topo proba</td>
+                    <td>{{ result.topo_proba }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="alert" style="background-color:#F4F4F4;border-color:#DDDDDD">
+            <h4 style="margin-bottom:30px">TMP topology prediction of DeepTMpred</h4>
+            <canvas id="canvas" width="800" height="300" ></canvas>
+
+<!--            <div id="myTabContent" class="tab-content" style="width:800px;">-->
+<!--                <div class="tab-pane fade in active" id="bturns">-->
+<!--                    <iframe style="position:relative;top:10px;height:300px;width:490px;" id = "bTurnsContent" frameborder=0>-->
+<!--                    </iframe>-->
+<!--                </div>-->
+<!--            </div>-->
+
+        </div>
+
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script>
+        $(document).ready(function(){
+            // var res = "";
+            // var status = "{{ status }}";
+            // var pid = "{{ pid }}";
+            // if (status !== 'SUCCESS'){
+            //     $.getJSON('/update_status/'+pid,function(ret){
+            //         //返回值 ret 在这里是一个字典
+            //         status = ret.status;    // 也可以用 ret['status']
+            //         res = ret.result;
+            //     });
+            //     $('#result').html(res);
+            //     // 延时间
+            //     setTimeout(function(){ alert("Hello"); }, 10*1000);
+            // }
+            var resDict = {{ resultDict|safe }};
+            var transList = resDict.topo['4cz9_B'];
+            var seq = resDict.sequence;
+            seq = seq.substring(9);    // 去除>example
+            seq = seq+seq+seq+seq;    // 这条序列太短，为了example扩长；
+            console.log(transList, transList.length);
+            console.log(seq, seq.length);
+            function canvas_draw() {
+                var rectNum = transList.length;
+                var canvas = document.getElementById('canvas');
+                var ctx = canvas.getContext('2d');
+                var lineStart = 50;
+                var lineEnd = 750;
+                var linWidth = lineEnd-lineStart;
+                var lineUp = 50;
+                var lineDown = 150;
+                var lineHeight = lineDown-lineUp;
+                // up line
+                ctx.moveTo(lineStart,50);
+                ctx.lineTo(lineEnd,50);
+                ctx.stroke();
+                // ctx.closePath();
+                // down line
+                ctx.moveTo(lineStart,150);
+                ctx.lineTo(lineEnd,150);
+                ctx.stroke();
+                // ctx.closePath();
+                ctx.fillStyle='#b2ffe9';
+                ctx.fillRect(lineStart,lineUp,linWidth,lineHeight);
+                // rect
+                var rectWidth = parseInt(linWidth/(rectNum*2+1));
+                var rectHeight = 150;
+                var rectX = lineStart+rectWidth;
+                var rectY = 25;
+                console.log(rectWidth);
+                for(var i=0;i<rectNum;i++){
+                    //设置填充颜色
+                    ctx.fillStyle='#5aff47';
+                    //填充一个矩形
+                    ctx.fillRect(rectX,rectY,rectWidth,rectHeight);
+                    rectX+=2*rectWidth;
+                }
+                // 半圆
+                var r = rectWidth;
+                var circleStartX = lineStart+rectWidth+(rectWidth/2);
+                var circleStartY = 25;
+                var direction = 1;    // 0为顺时针，1为逆时针
+                // console.log(circleStartX, circleStartY);
+                ctx.moveTo(circleStartX, circleStartY);
+                ctx.arc(circleStartX-r, circleStartY, r, 0, Math.PI, direction);
+                ctx.stroke();
+
+                circleStartY+=rectHeight;
+                direction = 1;
+                for(var i=0; i<rectNum;i++){
+                    // console.log(i,circleStartX, circleStartY);
+                    ctx.moveTo(circleStartX, circleStartY);
+                    ctx.arc(circleStartX+r, circleStartY, r, Math.PI, 0, direction);    // pi和0位置换
+                    ctx.stroke();
+                    circleStartX+=2*r;
+                    circleStartY+=Math.pow(-1, i+1)*rectHeight;
+                    direction+=Math.pow(-1, i+1);
+                }
+                // text
+
+                var textStartX = lineStart+rectWidth;
+                var fontHeight = 10;
+                var textStartY= 25;
+                ctx.strokeText("outside", 10, lineUp);
+                ctx.strokeText("inside", 10, lineDown);
+                for(var i=0; i<rectNum; i++){
+                    var ind1 = transList[i][0];
+                    var amino1 = seq[ind1];
+                    var ind2 = transList[i][1];
+                    var amino2 = seq[ind2];
+                    ctx.strokeText(amino1+" "+ind1, textStartX, textStartY);
+                    ctx.strokeText(amino2+" "+ind2, textStartX, textStartY+rectHeight+fontHeight);
+                    textStartX+=2*rectWidth;
+                }
+            };
+            canvas_draw();
+        });
+    </script>
+{% endblock %}

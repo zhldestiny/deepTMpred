@@ -1,0 +1,748 @@
+{% extends 'app_new/layout/basic.html' %}
+{% load static %}
+
+{% block title %} init {% endblock %}
+
+
+{% block css %}
+<!--    <link rel="stylesheet" href="{% static 'css/account.css' %}">-->
+    <style>
+        #scoreDomain{
+            width: 950px;
+            position: relative;
+            left: 20px;
+        }
+        /*secondary struct */
+        #secondStructDiv{
+            position:relative;
+            height: 60px;
+        }
+        #secStructSvg{
+            width:300px;
+            height:75px;
+            margin:auto;
+            position: absolute;
+        }
+        #secondStruct{
+            position: absolute;
+            width:930px;
+            height: 60px;
+            left: 0;
+            top: 0;
+        }
+        #secStruct{
+            width:300px;
+            height:75px;
+            margin:auto;
+            position: absolute;
+        }
+
+        #secStructImg{
+            width:15px;
+            height: 20px;
+            position: absolute;
+        }
+        #secStructAmino{
+            width:15px;
+            height: 20px;
+            font-weight: bold ;
+            position: absolute;
+        }
+        #secondStructImg{
+            position: absolute;
+            width:805px;
+            height: 10px;
+            left: 105px;
+            top:25px;
+        }
+        #tip2{
+            width: 300px;
+            height: 80px;
+            right: -1000px;
+            position: absolute;
+        }
+        /*  data value  */
+        #dataValueDiv{
+            position:relative;
+        }
+        .hidden1{
+            display:none;
+            position: absolute;
+        }
+        /* tooltip样式使得value值可以随着两条轴线移动 */
+        #tooltip {
+            position: absolute;
+            left: -1000px;
+            top: -1000px;
+        }
+        #tooltip{
+            position:absolute;
+            width:auto;
+            height:auto;
+            padding:0px 5px 0px 5px;
+            background-color:rgba(164,190,212,0.5);
+
+            -webkit-box-shadow:4px 4px 10px rgba(0,0,0,0.4);
+            -moz-box-shadow:4px 4px 10px rgba(0,0,0,0.4);
+            box-shadow:4px 4px 10px rgba(0,0,0,0.4);
+
+            pointer-events:none;
+        }
+        #tooltip p{
+            margin:0;
+            font-size:11px;
+            line-height:20px;
+        }
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: black;
+            shape-rendering: auto;
+        }
+        .axis text {
+            font-family:"Microsoft YaHei";
+            font-size: 11px;
+        }
+        /*图例*/
+        #sechelix:before{
+            position: absolute;
+            top: 1px;
+        }
+        #sechelix:before{
+            content: url({% static "img/element/_helixmark.png"%});
+            left: 150px;
+        }
+        /*  表格  */
+        /* 表格seq数据 鼠标悬浮显示 平时缩略 */
+        div.seq{text-overflow:ellipsis; overflow:hidden; width:250px; white-space:nowrap;}
+        div.seq:hover{text-overflow:inherit; overflow:visible; white-space:inherit;word-break:break-all;word-wrap: break-word;}
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="panel panel-info" style="margin-top: 20px;}">
+          <!-- 1.sequence show -->
+            <div class="panel-heading"><h3 class="panel-title" style="color: #6059f6;">Basic information of Transmembrane Protein</h3></div>
+            <div class="panel-body">
+<!--            <table width="100%"  cellspacing="0">-->
+<!--                <tr>-->
+<!--                    <td>Sequence: </td>-->
+<!--                    <td style="word-break:break-all; word-wrap: break-word;">{{ result.seq }}</td>-->
+<!--                </tr>-->
+<!--            </table>-->
+              <table id='browse_table' class='display' border="0" cellspacing='0' width='100%'>
+                  <thead><tr><th>ID</th><th>Sequence</th></tr></thead>
+                  <tbody>
+                  <td>4pxk_A</td>
+                  <td><div class='seq'>{{ result.seq }}</div></td>
+                  </tbody>
+              </table>
+          </div>
+        </div>
+        <div class="panel panel-info">
+            <!-- 2.canvas show           -->
+              <div class="panel-heading"><h3 class="panel-title" style="color: #6059f6;">Transmembrane Protein topology prediction</h3></div>
+              <div class="panel-body">
+                  <div class="canvas" style="width:930px;height:300px;margin: 0 auto">
+                      <canvas id="canvas" width="930" height="300" ></canvas>
+                  </div>
+              </div>
+        </div>
+        <div class="panel panel-info">
+            <!--  3.score show          -->
+              <div class="panel-heading"><h3 class="panel-title" style="color: #6059f6;">Probability distribution of TMHs </h3></div>
+              <div class="panel-body">
+                  <div id="scoreDomain" style="margin: 0 auto;">
+    <!--                <h4 style="margin-bottom:30px">topo_proba</h4>-->
+                    <div id='dataValueDiv'>
+                        <svg id='dataValue'>
+                            <line id="xline" class=''></line>
+                            <line id="yline" class=''></line>
+                            <circle id="scircle" class=''></circle>
+                        </svg>
+                        <div id="tooltip" >
+                            <p><span id='value'></span></p>
+                        </div>
+                    </div>
+
+                    <!--跨膜蛋白示意图-->
+
+                    <div id = "tip2" class="hidden1">
+                        <div id = "secStruct">
+                        </div>
+                        <svg id = "secStructSvg">
+                        </svg>
+                    </div>
+                    <div id ="secondStructDiv">
+                        <div id = "secondStructImg">
+                        </div>
+                        <svg id = "secondStruct">
+                        </svg>
+                    </div>
+                    <div id="yLabel" style="position: absolute;top: 30%;left: -10px;z-index: 999;width: 150px; -webkit-transform: rotate(-90deg);;">
+                        Probability of TMH
+                    </div>
+                    <div id="xLabel" style="position: absolute;top: 240px;left: 50%;z-index: 999;width: 300px;">
+                        Residue position
+                    </div>
+                    <div id="secStrDes" style="position: absolute;top: 300px;left: 740px;z-index: 999;width: 300px;">
+                        <ul>
+                            <li id="sechelix">
+                                transmembrane region
+                            </li>
+                        </ul>
+                    </div>
+    <!--                 <p style="text-align: center; margin-top:20px">-->
+    <!--                    <b style="font-size: 14px">transmembrane show</b>-->
+    <!--                </p>-->
+                </div>
+              </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script src="{% static 'js/useless/d3.v3.min.js' %}"></script>
+    <script src="{% static 'js/useless/dimple.v2.3.0.min.js' %}"></script>
+    <script>
+        var resDict = {{ exampleDict|safe }};
+        var transList = resDict.topo;
+        var seq = resDict.seq;
+        // seq = seq.substring(9);    // 去除>example
+        console.log("transList", transList, transList.length);
+        console.log(seq, seq.length);
+        canvas_draw();
+
+        var dataset = [];
+        var valueset = resDict.topo_proba;
+        var numset = [];
+        for (var i = 1; i < valueset.length + 1; i++) {
+            numset[i - 1] = i;
+        }
+        var w = 930;
+        var h = 250;
+        var x_len = 800;
+        var padding = 26;
+        var speed = 50;
+
+        //比例尺
+        var xScale;                 //将下标映射到x轴上
+        var yScale;                 //将score值映射到y轴上
+
+        // draw topo_prob
+        addValueMap();
+
+        //添加示意图
+        var numArr = numset;
+        var secStructArr = Array(numArr.length).fill(0);
+        for (var i = 0; i < transList.length; i++) {
+            for (var j = transList[i][0] - 1; j < transList[i][1]; j++) {
+                secStructArr[j] = 1;    // 跨膜区域标为1
+            }
+        }
+        var aminoArr = seq;
+
+        addSketchMap();
+
+        function canvas_draw() {
+            var rectNum = transList.length;
+            var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+            var lineStart = 100;  // 50
+            var lineEnd = 800;  // 750
+            var linWidth = lineEnd - lineStart;
+            var lineUp = 100; //50
+            var lineDown = 200;  //150
+            var lineHeight = lineDown - lineUp;
+            // up line
+            ctx.strokeStyle = '#000000';
+            ctx.moveTo(lineStart, lineUp);
+            ctx.lineTo(lineEnd, lineUp);
+            // ctx.stroke();
+            // ctx.closePath();
+            // down line
+            ctx.moveTo(lineStart, lineDown);
+            ctx.lineTo(lineEnd, lineDown);
+            ctx.stroke();
+            // ctx.closePath();
+            ctx.fillStyle = '#fffbfb';
+            ctx.fillRect(lineStart, lineUp, linWidth, lineHeight);
+            // rect
+            var rectWidth = parseInt(linWidth / (rectNum * 2 + 1));
+            var rectHeight = 150;
+            var rectX = lineStart + rectWidth;
+            var rectY = lineUp - 25;  // 25为矩形高于upline的高度
+            console.log("rectWidth", rectWidth);
+            for (var i = 0; i < rectNum; i++) {
+                //设置填充颜色
+                // ctx.fillStyle = 'rgba(255,0,0,0.64)';
+                //填充一个矩形
+                // ctx.fillRect(rectX, rectY, rectWidth, rectHeight);
+                // rectX += 2 * rectWidth;
+
+                // 圆角矩形
+                fillRoundRect(ctx, rectX, rectY, rectWidth, rectHeight, 10, 'rgba(255,0,0,0.64)');
+                rectX += 2 * rectWidth;
+            }
+            // 半圆
+            //设置线宽
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = '#242acc';
+            var r = rectWidth;
+            var circleStartX = lineStart + rectWidth + (rectWidth / 2);
+            var circleStartY = rectY;
+            var direction = 1;    // 0为顺时针，1为逆时针
+            // console.log(circleStartX, circleStartY);
+            ctx.moveTo(circleStartX, circleStartY);
+            ctx.arc(circleStartX - r, circleStartY, r, 0, Math.PI, direction);
+
+            circleStartY += rectHeight;
+            direction = 1;
+            for (var i = 0; i < rectNum; i++) {
+                // console.log(i,circleStartX, circleStartY);
+                ctx.moveTo(circleStartX, circleStartY);
+                ctx.arc(circleStartX + r, circleStartY, r, Math.PI, 0, direction);    // pi和0位置换
+                circleStartX += 2 * r;
+                circleStartY += Math.pow(-1, i + 1) * rectHeight;
+                direction += Math.pow(-1, i + 1);
+            }
+            ctx.stroke();
+            // text
+            ctx.lineWidth = 1;  // 设置线宽
+            ctx.strokeStyle = '#000000';
+            var textStartX = lineStart + rectWidth;
+            var fontHeight = 10;
+            var textStartY = rectY;
+            ctx.strokeText("outside", 50, lineUp - 5);
+            ctx.strokeText("inside", 50, lineDown + 5);
+            ctx.strokeStyle = '#000000';
+            for (var i = 0; i < rectNum; i++) {
+                var ind1 = transList[i][0];
+                var amino1 = seq[ind1];
+                var ind2 = transList[i][1];
+                var amino2 = seq[ind2];
+                if (i % 2 === 0) {
+                    ctx.strokeText(amino1 + " " + ind1, textStartX + 10, textStartY + fontHeight);
+                    ctx.strokeText(amino2 + " " + ind2, textStartX + 10, textStartY + rectHeight);  // +fontHeight
+                } else {
+                    ctx.strokeText(amino2 + " " + ind2, textStartX + 10, textStartY + fontHeight);
+                    ctx.strokeText(amino1 + " " + ind1, textStartX + 10, textStartY + rectHeight);  // +fontHeight
+                }
+
+                textStartX += 2 * rectWidth;
+            }
+        }
+
+         /**该方法用来绘制一个有填充色的圆角矩形
+         *@param cxt:canvas的上下文环境
+         *@param x:左上角x轴坐标
+         *@param y:左上角y轴坐标
+         *@param width:矩形的宽度
+         *@param height:矩形的高度
+         *@param radius:圆的半径
+         *@param fillColor:填充颜色
+         **/
+        function fillRoundRect(cxt, x, y, width, height, radius, /*optional*/ fillColor) {
+            //圆的直径必然要小于矩形的宽高
+            if (2 * radius > width || 2 * radius > height) { return false; }
+
+            cxt.save();
+            cxt.translate(x, y);
+            //绘制圆角矩形的各个边
+            drawRoundRectPath(cxt, width, height, radius);
+            cxt.fillStyle = fillColor || "#000"; //若是给定了值就用给定的值否则给予默认值
+            cxt.fill();
+            cxt.restore();
+        }
+
+        function drawRoundRectPath(cxt, width, height, radius) {
+            cxt.beginPath(0);
+            //从右下角顺时针绘制，弧度从0到1/2PI
+            cxt.arc(width - radius, height - radius, radius, 0, Math.PI / 2);
+
+            //矩形下边线
+            cxt.lineTo(radius, height);
+
+            //左下角圆弧，弧度从1/2PI到PI
+            cxt.arc(radius, height - radius, radius, Math.PI / 2, Math.PI);
+
+            //矩形左边线
+            cxt.lineTo(0, radius);
+
+            //左上角圆弧，弧度从PI到3/2PI
+            cxt.arc(radius, radius, radius, Math.PI, Math.PI * 3 / 2);
+
+            //上边线
+            cxt.lineTo(width - radius, 0);
+
+            //右上角圆弧
+            cxt.arc(width - radius, radius, radius, Math.PI * 3 / 2, Math.PI * 2);
+
+            //右边线
+            cxt.lineTo(width, height - radius);
+            cxt.closePath();
+        }
+
+        function addValueMap() {
+            //归一化处理
+            var normalize = d3.scale.linear()
+                .domain([d3.min(valueset, function (d) {
+                    return d;
+                }), d3.max(valueset, function (d) {
+                    return d;
+                })])
+                .range([0, 1]);
+            for (var i = 0; i < numset.length; i++) {
+                valueset[i] = parseFloat((normalize(valueset[i])).toFixed(5));
+            }
+            // dataset
+            for (var i = 0; i < numset.length; i++) {
+                dataset.push({
+                    key: numset[i],
+                    value: parseFloat(valueset[i]),
+                });
+            }
+            xScale = d3.scale.linear()
+                .domain([0, numset.length])
+                .range([105, 905]);
+            yScale = d3.scale.linear()
+                .domain([d3.min(valueset, function (d) {
+                    return d;
+                }), d3.max(valueset, function (d) {
+                    return d;
+                })])
+                .range([h - padding, padding]);
+
+            // add ValueMap
+            var p = "";
+            for (var i = 0; i < numset.length; i++) {
+                p += xScale(numset[i]);
+                p += ",";
+                p += yScale(valueset[i]);
+                if (i < numset.length - 1) {
+                    p += " ";
+                }
+            }
+            //console.log(p);
+            //折线图区域
+            var xpos;
+            var ypos;
+            var svg = d3.select("#dataValue")
+                .attr("width", w)
+                .attr("height", h);
+            svg.on("mouseover", function () {
+                xpos = d3.mouse(svg.node())[0];
+                ypos = d3.mouse(svg.node())[1];
+            });
+            //添加折线 rgba(66,133,244,0.5)
+            svg.append("polyline")
+                .attr("points", p)
+                .attr("fill", "none")
+                .attr("stroke", "rgba(233,0,0,0.5)")
+                .attr("stroke-width", 2);
+
+            //Define X axis
+            var xAxis = d3.svg.axis()
+                .scale(xScale)
+                .ticks(5)//最多刻度数，连上原点
+                .orient("bottom");
+            //.tickFormat();//添加刻度格式
+            //Define Y axis
+            var yAxis = d3.svg.axis()
+                .scale(yScale)
+                .orient("left")
+                .ticks(5);
+            //.tickFormat();
+            //Create X axis
+
+            svg.append("g")
+                .attr("class", "axis")
+                .attr("transform", "translate(0," + (h - padding) + ")")//设置据下边界的距离
+                .call(xAxis);
+
+            //Create Y axis
+            svg.append("g")
+                .attr("class", "axis")
+                .attr("transform", "translate(105, 0)")//设置轴据左边界的距离
+                .call(yAxis);
+
+            svg.selectAll(".srect")
+                .data(dataset, function (d) {
+                    return d.key;
+                })
+                .enter()
+                .append("rect")
+                .attr("id", function (d, i) {
+                    var theId = "scoreRect" + i;
+                    return theId;
+                })
+                .attr("class", "srect")
+                .attr("x", function (d, i) {
+                    return xScale(i + 1) - x_len / dataset.length / 2;
+                })
+                .attr("y", function (d) {
+                    return padding;
+                })
+                .attr("height", function (d) {
+                    return h - padding * 2;
+                    //return (w-padding*2)/dataset.length;
+                })
+                .attr("width", function (d) {
+                    return x_len / dataset.length;
+                })
+                .attr("fill", "rgba(255,0,0,0)")
+                .on("mouseover", function (d, i) {
+                    var tempValue = d.value;
+                    var tempIndex = d.key;
+                    // var tempExp = null;    // 亲疏水，暂时设为null
+
+                    var xPosition = xScale(tempIndex);
+                    var yPosition = yScale(tempValue);
+                    //console.log(tempValue);
+                    //console.log(yPosition);
+
+                    drawInteraction(tempValue, tempIndex, xPosition, yPosition);
+                })
+                .on("mouseout", function (d, i) {
+                    /* d3.select("#tooltipExp")
+                        .style("left", "-1000px")
+                        .style("top", "-1000px");
+                    d3.select("#sCircleExp").classed("hidden1",true);
+                    d3.select("#xlineExp").classed("hidden1", true);
+                    d3.select("#ylineExp").classed("hidden1", true); */
+                    d3.select("#tooltip")
+                        .style("left", "-1000px")
+                        .style("top", "-1000px");
+                    d3.select("#scircle").classed("hidden1", true);
+                    d3.select("#xline").classed("hidden1", true);
+                    d3.select("#yline").classed("hidden1", true);
+                    var tempId = "#rect" + (d.key - 1);
+                    d3.select(tempId)
+                        .transition()
+                        .duration(100)
+                        .attr("fill", "rgba(255,0,0,0)");
+                });
+
+        }
+
+        function drawInteraction(tempValue, tempIndex, xPosition, yPosition) {
+            // var _yPosition = yExpScale(tempExp);
+            //alert(yPosition);
+            //添加提示框
+            var temp = tempIndex + ", " + tempValue;
+            d3.select("#tooltip")
+                .style("left", (xPosition + "px"))
+                .style("top", (yPosition + "px"))
+                .transition()
+                .duration(speed)
+                .select("#value")
+                .text(temp);
+
+            //添加提示圈
+            d3.select("#scircle")
+                .classed("hidden1", false)
+                .attr("cx", xPosition)
+                .attr("cy", yPosition)
+                .attr("r", 3)
+                .transition()
+                .duration(speed)
+                .attr("fill", "black");
+
+            //添加坐标线
+            d3.select("#xline")
+                .classed("hidden1", false)
+                .attr("x1", 105)
+                .attr("y1", yPosition)
+                .attr("x2", 905)
+                .attr("y2", yPosition)
+                .transition()
+                .duration(speed)
+                .attr("stroke", "rgba(255,0,0,0.3)");
+            d3.select("#yline")
+                .classed("hidden1", false)
+                .attr("x1", xPosition)
+                .attr("y1", padding)
+                .attr("x2", xPosition)
+                .attr("y2", h - padding)
+                .transition()
+                .duration(speed)
+                .attr("stroke", "rgba(255,0,0,0.3)");
+
+            //二级结构图的分割线
+            // var tempId = "#rect" + (tempIndex-1);
+            // d3.select(tempId)
+            //     .transition()
+            //     .duration(100)
+            //     .attr("fill","rgba(255,0,0,0.3)");
+        }
+
+        function addSketchMap() {
+            var currentStruct = secStructArr[0];
+            var structLength = 0;
+
+            for (var i = 0; i < numArr.length + 1; i++) {
+                if (i == numArr.length) {
+                    d3.select("#secondStructImg")
+                        .append("div")
+                        .style("background-image", function () {
+                            if (currentStruct === 1)  // 1 跨膜
+                                return "url({% static 'img/element/_helix.png' %})";
+                            else
+                                return "url({% static 'img/element/_coil.png' %})";
+                        })
+                        .style("width", function () {
+                            return x_len / numArr.length * structLength + "px";
+                        })
+                        .style("height", "10px")
+                        .style("background-repeat", "repeat")
+                        .style("float", "left");
+                    break;
+                }
+                if (currentStruct == secStructArr[i]) {
+                    structLength++;
+                } else {
+                    if (i != 0) {
+                        d3.select("#secondStructImg")
+                            .append("div")
+                            .style("background-image", function () {
+                                if (currentStruct === 1)
+                                    return "url({% static 'img/element/_helix.png' %})";
+                                else
+                                    return "url({% static 'img/element/_coil.png' %})";
+                            })
+                            .style("width", function () {
+                                return x_len / numArr.length * structLength + "px";
+                            })
+                            .style("height", "10px")
+                            .style("background-repeat", "repeat")
+                            .style("float", "left");
+                        structLength = 1;
+                        currentStruct = secStructArr[i];
+                    } else {
+                        structLength++;
+                    }
+                }
+
+                var tempId = "rect" + i;
+                d3.select("#secondStruct")
+                    //.style("left",function(){
+                    //    return "'" + ((w-padding*2) / dataset.length) +"px'";
+                    //})
+                    .append("rect")
+                    .attr("id", tempId)
+                    .attr("x", function () {
+                        return xScale(i + 1) - x_len / numArr.length / 2;
+                    })
+                    .attr("y", 0)
+                    .attr("width", function () {
+                        return x_len / numArr.length;
+                    })
+                    .attr("height", 60)
+                    .attr("fill", "rgba(255,0,0,0)")
+                    .on("mouseover", function () {
+                        d3.select(this)
+                            .transition()
+                            .duration(100)
+                            .attr("fill", "rgba(255,0,0,0.1)");
+                        var possec = parseInt(d3.select(this).attr("id").substr(4));
+                        // console.log(possec);
+
+                        var tempValue = valueset[possec];
+                        var tempIndex = numArr[possec];
+
+                        var xPosition = xScale(tempIndex);
+
+                        var yPosition = yScale(tempValue);
+                        drawInteraction(tempValue, tempIndex, xPosition, yPosition);
+
+                        //添加局部二级结构框
+                        addSecStructMapTip(possec);
+                        d3.select("#tip2")
+                            .classed("hidden1", false)
+                            .style("left", ((xPosition - 152) + "px"))
+                            .style("top", 200 + "px")  // tip2 距离顶边高度
+                            .style("background-color", "rgba(255,255,255,0.2)");
+                    })
+                    .on("mouseout", function (d, i) {
+                        d3.select(this)
+                            .transition()
+                            .duration(100)
+                            .attr("fill", "rgba(255,0,0,0)");
+                        d3.select("#tooltip")
+                            .style("left", "-1000px")
+                            .style("top", "-1000px");
+                        d3.select("#scircle").classed("hidden1", true);
+                        d3.select("#xline").classed("hidden1", true);
+                        d3.select("#yline").classed("hidden1", true);
+                        d3.select("tip2")
+                            .classed("hidden1", true);
+                        clearSecStructMapTip();
+                    });
+            }
+        }
+
+        //添加二级结构局部详细图
+        function addSecStructMapTip(i) {
+            var _padding = 10;
+            var _height = 130;
+            var _left = 135;
+            //if(i>=5)
+            for (var j = i - 9; j < i + 10; j++) {
+                if (j < 0) continue;
+                if (j >= aminoArr.length)
+                    break;
+                //添加残基名
+                d3.select("#secStruct")
+                    .append("p")
+                    .attr("id", "secStructAmino")
+                    .text(aminoArr[j])
+                    .style("left", ((_padding + _left + (j - i) * 15 + 3) + "px"))
+                    .style("top", ((_padding + 20) + "px"));
+                //添加坐标线
+                d3.select("#secStructSvg")
+                    .append("line")
+                    .attr("id", "secStructAxis")
+                    .attr("x1", (_padding + _left + (j - i) * 15))
+                    .attr("y1", (_padding + 40))
+                    .attr("x2", (_padding + _left + (j - i + 1) * 15))
+                    .attr("y2", (_padding + 40))
+                    .attr("stroke", "black")
+                    .attr("stroke-width", 1);
+                if (j % 5 == 0) {
+                    d3.select("#secStructSvg")
+                        .append("line")
+                        .attr("id", "secStructAxis")
+                        .attr("x1", (_padding + _left + (j - i) * 15 + 7))
+                        .attr("y1", (_padding + 40))
+                        .attr("x2", (_padding + _left + (j - i) * 15 + 7))
+                        .attr("y2", (_padding + 45))
+                        .attr("stroke", "black")
+                        .attr("stroke-width", 2);
+                    d3.select("#secStruct")
+                        .append("p")
+                        .style("left", ((_padding + _left + (j - i) * 15) + "px"))
+                        .style("top", ((_padding + 50) + "px"))
+                        .style("position", "absolute")
+                        .text(j + 1);
+                }
+            }
+        }
+
+        //清除二级结构局部详细图
+        function clearSecStructMapTip() {
+            d3.select("#secStruct")
+                .text("");
+            d3.select("#secStructSvg")
+                .text("");
+            d3.select("#tip2")
+                .style("background-color", "rgba(255,255,255,0")
+                .style("left", "-1000px")
+                .style("top", "-1000");
+        }
+
+    </script>
+{% endblock %}

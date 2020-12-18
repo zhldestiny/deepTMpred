@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="6407b607-3d2d-46b2-b182-378f1fe61bfd" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1khEf2WDZ4oP987EN47Q54RWZI8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app_new/templates/app_new" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app_new/templates/app_new" />
+      <recent name="$PROJECT_DIR$/app_new" />
+      <recent name="$PROJECT_DIR$/app_new/app_new" />
+      <recent name="$PROJECT_DIR$/app_new/views" />
+      <recent name="$PROJECT_DIR$/app_test/views" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app_new/templates/app_new" />
+      <recent name="$PROJECT_DIR$/app_new/static/css" />
+      <recent name="$PROJECT_DIR$/app_new/static/js" />
+      <recent name="$PROJECT_DIR$/app_new/static/img/element" />
+      <recent name="$PROJECT_DIR$/app_new/views" />
+    </key>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6407b607-3d2d-46b2-b182-378f1fe61bfd" name="Default Changelist" comment="" />
+      <created>1606144522847</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606144522847</updated>
+      <workItem from="1606144524120" duration="82000" />
+      <workItem from="1606144642445" duration="78000" />
+      <workItem from="1606144746248" duration="1219000" />
+      <workItem from="1606146040013" duration="1047000" />
+      <workItem from="1606183288676" duration="15632000" />
+      <workItem from="1606232046821" duration="1742000" />
+      <workItem from="1606269559491" duration="3386000" />
+      <workItem from="1606301103188" duration="5357000" />
+      <workItem from="1606357492510" duration="13711000" />
+      <workItem from="1606389278868" duration="3888000" />
+      <workItem from="1606405740217" duration="2074000" />
+      <workItem from="1606442727152" duration="1695000" />
+      <workItem from="1606458475464" duration="1050000" />
+      <workItem from="1606576056159" duration="3609000" />
+      <workItem from="1606633646922" duration="729000" />
+      <workItem from="1606641010899" duration="844000" />
+      <workItem from="1606702560269" duration="12215000" />
+      <workItem from="1606731651569" duration="3808000" />
+      <workItem from="1607236052005" duration="7526000" />
+      <workItem from="1607323525644" duration="5233000" />
+      <workItem from="1607339669752" duration="5243000" />
+      <workItem from="1607356539106" duration="201000" />
+      <workItem from="1607410732052" duration="11137000" />
+      <workItem from="1607441926774" duration="4422000" />
+      <workItem from="1607480414060" duration="604000" />
+      <workItem from="1607497235789" duration="12740000" />
+      <workItem from="1607576452120" duration="17946000" />
+      <workItem from="1607664276621" duration="10643000" />
+      <workItem from="1608022511579" duration="5581000" />
+      <workItem from="1608194927297" duration="10073000" />
+      <workItem from="1608217604293" duration="3736000" />
+      <workItem from="1608258657082" duration="8156000" />
+      <workItem from="1608292385495" duration="1144000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="320" y="127" key="#Deployment" timestamp="1606183692448">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="320" y="127" key="#Deployment/0.23.1440.877@0.23.1440.877" timestamp="1606183692448" />
+    <state x="320" y="127" key="#Options" timestamp="1606183702841">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="320" y="127" key="#Options/0.23.1440.877@0.23.1440.877" timestamp="1606183702841" />
+    <state x="456" y="272" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1607674403546">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="456" y="272" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1440.877@0.23.1440.877" timestamp="1607674403546" />
+    <state x="229" y="100" key="SettingsEditor" timestamp="1606183342628">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="229" y="100" key="SettingsEditor/0.23.1440.877@0.23.1440.877" timestamp="1606183342628" />
+    <state x="413" y="294" key="com.intellij.ide.util.TipDialog" timestamp="1608292385147">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="413" y="294" key="com.intellij.ide.util.TipDialog/0.23.1440.877@0.23.1440.877" timestamp="1608292385147" />
+    <state x="627" y="199" key="ftp.server.browser" timestamp="1606144821440">
+      <screen x="0" y="23" width="1440" height="877" />
+    </state>
+    <state x="627" y="199" key="ftp.server.browser/0.23.1440.877@0.23.1440.877" timestamp="1606144821440" />
+  </component>
+</project>

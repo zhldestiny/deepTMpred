@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'plugin/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugin/font-awesome/css/font-awesome.min.css' %}">
+<!--    <link rel="stylesheet" href="{% static 'js/DataTables/DataTables-1.10.21/css/jquery.dataTables.min.css' %}">-->
+    <style>
+        body {
+            margin: 0;
+            padding: 0px 0px 0px 0px;
+            background:#EEE;
+            font-family : Arial,微软雅黑,宋体;
+            font-size : 1.8em;
+            color : black;
+        }
+        .title { padding-bottom: 10px; border: darkgray 1px solid; }
+        nav.navbar{ margin-bottom: 0; }
+        #search_input{
+            -webkit-border-radius: 16px 0 0 16px;
+            -moz-border-radius: 16px 0 0 16px;
+            border-radius: 16px 0 0 16px;
+        }
+        #search_btn{
+            -webkit-border-radius: 0 16px 16px 0;
+            -moz-border-radius: 0 16px 16px 0;
+            border-radius: 0 16px 16px 0;
+            border-left: none;
+            margin-left: -4px;
+        }
+        #search_div{
+            padding: 10px 0 0;
+        }
+    </style>
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="{% url 'index' %}">
+                                <span class="glyphicon glyphicon-home"></span> Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-search"></span> Search
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-tasks"></span> Example
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="glyphicon glyphicon-question-sign"></span> Help
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="nav navbar-nav navbar-right form-inline" id="search_form">
+                        <div class="form-group" id="search_div">
+                            <input type="text" class="form-control" id="search_input" placeholder="type your job id here">
+                            <button type="submit" class="btn btn-default" id="search_btn" >
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="jumbotron" style="padding-top:10px; padding-bottom: 10px;">
+                <p><img class="img-responsive center-block" src="{% static 'img/deepTMpred_logo.png' %}" /></p>
+            </div>
+        </div>
+
+    <div class="container">
+    {% block content %}{% endblock %}
+    </div>
+
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+{#<script src="{% static 'js/jquery.dataTables.js' %}"></script>#}
+<script src="{% static 'plugin/bootstrap/js/bootstrap.min.js' %}"></script>
+{#<script src="{% static 'js/DataTables/DataTables-1.10.21/css/jquery.dataTables.min.css' %}"></script>#}
+
+{% block js %}{% endblock %}
+</body>
+</html>

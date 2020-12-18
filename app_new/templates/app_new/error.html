@@ -1,0 +1,40 @@
+{% extends 'app_new/layout/basic.html' %}
+{% load static %}
+
+{% block title %} init {% endblock %}
+
+
+{% block css %}
+<!--    <link rel="stylesheet" href="{% static 'css/account.css' %}">-->
+    <style>
+
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container" >
+        <div class="alert alert-danger" style="margin-top: 25px">
+<!--            <div class="box">-->
+<!--                The job is not found. May be wrong or expired.-->
+<!--            </div>-->
+            <p style="margin: 25px; font-size: 18px;text-align:center;">
+                The job is not found. May be wrong or expired.
+            </p>
+        </div>
+        <div style="height:500px"></div>
+
+<!--        <div class="alert alert-warning">-->
+<!--            <h3 style="margin-top:0;">Error</h3>-->
+<!--            <p>-->
+<!--                The file you upload contains no valid protein sequence.-->
+<!--            </p>-->
+<!--        </div>-->
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script>
+    </script>
+{% endblock %}

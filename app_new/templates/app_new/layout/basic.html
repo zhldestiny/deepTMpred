@@ -1,0 +1,219 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,300,700' rel='stylesheet' type='text/css'>
+    <!-- Library CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fonts/font-awesome/css/font-awesome.css' %}">
+<!--    <link rel="stylesheet" href="{% static 'css/animations.css' %}" media="screen">-->
+    <link rel="stylesheet" href="{% static 'css/superfish.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'css/revolution-slider/css/settings.css' %}" media="screen">
+<!--    <link rel="stylesheet" href="{% static 'css/prettyPhoto.css' %}" media="screen">-->
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Skin -->
+    <link rel="stylesheet" href="{% static 'css/colors/blue.css' %}" id="colors">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/theme-responsive.css' %}">
+    <!-- Switcher CSS -->
+<!--     <link href="{% static 'css/switcher.css' %}" rel="stylesheet">-->
+<!--     <link href="{% static 'css/spectrum.css' %}" rel="stylesheet">-->
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="{% static 'img/ico/favicon.ico' %}">
+    <link rel="apple-touch-icon" href="{% static 'img/ico/apple-touch-icon.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'img/ico/apple-touch-icon-72.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'img/ico/apple-touch-icon-114.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'img/ico/apple-touch-icon-144.png' %}">
+<!--    <link rel="stylesheet" href="{% static 'js/DataTables/DataTables-1.10.21/css/jquery.dataTables.min.css' %}">-->
+    <style>
+    </style>
+    {% block css %}{% endblock %}
+</head>
+
+<body class="home">
+    <div class="wrap">
+         <!-- Header Start -->
+         <header id="header">
+            <!-- Header Top Bar Start -->
+<!--            <div class="top-bar">-->
+<!--               <div class="slidedown collapse">-->
+<!--                  <div class="container">-->
+<!--                     <div class="server-name pull-left">-->
+<!--                        Deep Trsmembrane Protein Prediction-->
+<!--                     </div>-->
+<!--                  </div>-->
+<!--               </div>-->
+<!--            </div>-->
+            <!-- Header Top Bar End -->
+            <!-- Main Header Start -->
+            <div class="main-header">
+               <div class="container">
+                  <!-- TopNav Start -->
+                  <div class="topnav navbar-header">
+                     <a class="navbar-toggle down-button" data-toggle="collapse" data-target=".slidedown">
+                     <i class="icon-angle-down icon-current"></i>
+                     </a>
+                  </div>
+                  <!-- TopNav End -->
+                  <!-- Logo Start -->
+                  <div class="logo pull-left">
+                     <h1>
+                        <a href="{% url 'index' %}">
+                        <img src="{% static 'img/deepTMpred/deepTMpred_logo.png' %}" alt="pixma" width="160" height="40">
+                        </a>
+                     </h1>
+                  </div>
+                  <!-- Logo End -->
+
+                  <!-- Menu Start -->
+                  <nav class="collapse navbar-collapse menu">
+                     <ul class="nav navbar-nav sf-menu" >
+                        <li>
+                           <a id="home" href="{% url 'index' %}" style="font-weight: bolder">  <!-- id="current" -->
+                            Home
+                           <span class="sf-sub-indicator"></span>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="{% url 'webserver' %}" class="sf-with-ul" id="webserver" style="font-weight: bolder">
+                           WebServer
+                           <span class="sf-sub-indicator"></span>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="{% url 'example' %}" class="sf-with-ul" id="exa" style="font-weight: bolder">
+                           Example
+                           <span class="sf-sub-indicator"></span>
+                           </a>
+                        </li>
+                        <li>
+                           <a href="#" class="sf-with-ul" id="help" style="font-weight: bolder">
+                           Help
+                           <span class="sf-sub-indicator">
+                           </span>
+                           </a>
+                        </li>
+                        <li><a href="#" style="font-weight: bolder">Contact</a></li>
+                     </ul>
+                  </nav>
+                  <!-- Menu End -->
+               </div>
+            </div>
+            <!-- Main Header End -->
+         </header>
+         <!-- Header End -->
+
+         <!-- Content Start -->
+         {% block content %}{% endblock %}
+         <!-- Content End -->
+
+         <!-- Footer Start -->
+         <footer id="footer">
+            <!-- Footer Top Start -->
+            <div class="footer-top">
+               <div class="container">
+                  <div class="row">
+                     <section class="col-lg-3 col-md-3 col-xs-12 col-sm-3 footer-one">
+                        <h3>About</h3>
+                        <p>
+                           Isyslab.
+                        </p>
+                     </section>
+                     <section class="col-lg-3 col-md-3 col-xs-12 col-sm-3 footer-two">
+                         <h3>Contact Us</h3>
+                        <ul class="contact-us">
+                           <li>
+                              <i class="icon-map-marker"></i>
+                              <p>
+                                 <strong>Address:</strong> Luoyu Road 1037, <br>
+                                 Wuhan, China
+                              </p>
+                           </li>
+<!--                           <li>-->
+<!--                              <i class="icon-phone"></i>-->
+<!--                              <p><strong>Phone:</strong> +880 41 723 272</p>-->
+<!--                           </li>-->
+                           <li>
+                              <i class="icon-envelope"></i>
+                              <p><strong>Email:</strong><a href="mailto:yanw@hust.edu.cn">yanw@hust.edu.cn</a></p>
+                           </li>
+                        </ul>
+                     </section>
+                     <section class="col-lg-3 col-md-3 col-xs-12 col-sm-3 footer-three">
+<!--                        <h3>Twitter Stream</h3>-->
+<!--                        <ul id="tweets">-->
+<!--                        </ul>-->
+                     </section>
+                     <section class="col-lg-3 col-md-3 col-xs-12 col-sm-3 footer-four">
+<!--                        <h3>Flickr Photostream</h3>-->
+<!--                        <ul id="flickrfeed" class="thumbs"></ul>-->
+                     </section>
+                  </div>
+               </div>
+            </div>
+            <!-- Footer Top End -->
+            <!-- Footer Bottom Start -->
+            <div class="footer-bottom">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6 ">Copyright &copy; 2020.Isyslab All rights reserved.</div>
+                     <div class="col-lg-6 col-md-6 col-xs-12 col-sm-6 ">
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- Footer Bottom End -->
+         </footer>
+         <!-- Scroll To Top -->
+         <a href="#" class="scrollup"><i class="icon-angle-up"></i></a>
+    </div>
+
+    <!-- The Scripts -->
+    <script src="{% static 'js/ref/jquery.min.js' %}"></script>
+    <script src="{% static 'js/ref/bootstrap.js' %}"></script>
+<!--    <script src="{% static 'js/jquery.dataTables.js' %}"></script>-->
+    <script src="{% static 'js/ref/jquery.parallax.js' %}"></script>
+    <script src="{% static 'js/ref/modernizr-2.6.2.min.js' %}"></script>
+    <script src="{% static 'js/ref/revolution-slider/js/jquery.themepunch.revolution.min.js' %}"></script>
+    <script src="{% static 'js/ref/jquery.nivo.slider.pack.js' %}"></script>
+<!--    <script src="{% static 'js/ref/jquery.prettyPhoto.js' %}"></script>-->
+    <script src="{% static 'js/ref/superfish.js' %}"></script>
+<!--    <script src="{% static 'js/ref/tweetMachine.js' %}"></script>-->
+    <script src="{% static 'js/ref/tytabs.js' %}"></script>
+    <script src="{% static 'js/ref/jquery.gmap.min.js' %}"></script>
+    <script src="{% static 'js/ref/circularnav.js' %}"></script>
+    <script src="{% static 'js/ref/jquery.sticky.js' %}"></script>
+<!--    <script src="{% static 'js/ref/jflickrfeed.js' %}"></script>-->
+    <script src="{% static 'js/ref/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/ref/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/ref/spectrum.js' %}"></script>
+    <script src="{% static 'js/ref/custom.js' %}"></script>
+
+<script>
+    $(function () {
+        var localPath = location.pathname.split("/")[2];
+        var idValue = "current";
+        // console.log(localPath);
+        if(localPath==="index"){
+            //$(".download").css("z-index", "1002");
+            $("#home").attr("id", idValue);
+            //console.log($(".download").html());
+        } else if (localPath==="webserver" || localPath==="status"){
+            $("#webserver").attr("id", idValue);
+        } else if(localPath==="example"){
+            $("#exa").attr("id", idValue);
+        } else if(localPath==="help"){
+            $("#help").attr("id", idValue);
+        }
+    });
+</script>
+{% block js %}{% endblock %}
+</body>
+</html>

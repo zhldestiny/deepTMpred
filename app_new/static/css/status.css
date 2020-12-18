@@ -1,0 +1,96 @@
+#scoreDomain{
+    width: 950px;
+    position: relative;
+    left: 20px;
+}
+/*secondary struct */
+#secondStructDiv{
+    position:relative;
+    height: 60px;
+}
+#secStructSvg{
+    width:300px;
+    height:75px;
+    margin:auto;
+    position: absolute;
+}
+#secondStruct{
+    position: absolute;
+    width:930px;
+    height: 60px;
+    left: 0;
+    top: 0;
+}
+#secStruct{
+    width:300px;
+    height:75px;
+    margin:auto;
+    position: absolute;
+}
+
+#secStructImg{
+    width:15px;
+    height: 20px;
+    position: absolute;
+}
+#secStructAmino{
+    width:15px;
+    height: 20px;
+    font-weight: bold ;
+    position: absolute;
+}
+#secondStructImg{
+    position: absolute;
+    width:805px;
+    height: 10px;
+    left: 105px;
+    top:25px;
+}
+#tip2{
+    width: 300px;
+    height: 80px;
+    right: -1000px;
+    position: absolute;
+}
+/*  data value  */
+#dataValueDiv{
+    position:relative;
+}
+.hidden1{
+    display:none;
+    position: absolute;
+}
+/* tooltip样式使得value值可以随着两条轴线移动 */
+#tooltip {
+    position: absolute;
+    left: -1000px;
+    top: -1000px;
+}
+#tooltip{
+    position:absolute;
+    width:auto;
+    height:auto;
+    padding:0px 5px 0px 5px;
+    background-color:rgba(164,190,212,0.5);
+
+    -webkit-box-shadow:4px 4px 10px rgba(0,0,0,0.4);
+    -moz-box-shadow:4px 4px 10px rgba(0,0,0,0.4);
+    box-shadow:4px 4px 10px rgba(0,0,0,0.4);
+
+    pointer-events:none;
+}
+#tooltip p{
+    margin:0;
+    font-size:11px;
+    line-height:20px;
+}
+.axis path,
+.axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: auto;
+}
+.axis text {
+    font-family:"Microsoft YaHei";
+    font-size: 11px;
+}

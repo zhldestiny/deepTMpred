@@ -1,0 +1,298 @@
+{% extends 'app_new/layout/basic.html' %}
+{% load static %}
+
+{% block title %} index {% endblock %}
+
+
+{% block css %}
+<!--    <link rel="stylesheet" href="{% static 'css/account.css' %}">-->
+    <style>
+
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <!-- Content Start -->
+    <div id="main">
+    <!-- Slider Start-->
+    <div class="fullwidthbanner-container">
+       <div class="fullwidthbanner rslider">
+          <ul>
+             <!-- THE FIRST SLIDE -->
+<!--             <li data-delay="6000" data-masterspeed="300" data-transition="fade">-->
+<!--                <div class="slotholder"><img src="{% static 'img/slider/deepTMpred_raw.png' %}" data-fullwidthcentering="on" alt="Pixma"></div>-->
+<!--                <div class="caption modern_big_bluebg h1 lft tp-caption start"-->
+<!--                   data-x="40"-->
+<!--                   data-y="85"-->
+<!--                   data-speed="700"-->
+<!--                   data-endspeed="800"-->
+<!--                   data-start="1000"-->
+<!--                   data-easing="easeOutQuint"-->
+<!--                   data-endeasing="easeOutQuint">-->
+<!--                   <h3>DeepTMpred</h3>-->
+<!--                </div>-->
+<!--                <div class="caption lfb caption_button_1 fadeout tp-caption start"-->
+<!--                   data-x="40"-->
+<!--                   data-y="330"-->
+<!--                   data-speed="900"-->
+<!--                   data-endspeed="300"-->
+<!--                   data-start="2700"-->
+<!--                   data-hoffset="-70"-->
+<!--                   data-easing="easeOutExpo">-->
+<!--                   <a class="btn-special hidden-xs btn-grey" href="#">Learn More</a>-->
+<!--                </div>-->
+<!--             </li>-->
+             <li data-delay="6000" data-masterspeed="300" data-transition="fade">
+                <div class="slotholder"><img src="{% static 'img/slider/deepTMpred_raw.png' %}" data-fullwidthcentering="on" alt="Pixma"></div>
+             </li>
+             <!-- THE RESPONSIVE SLIDE -->
+             <li data-transition="fade" data-slotamount="1" data-masterspeed="300">
+                <img src="{% static 'img/slider/deepTMpred_raw.png' %}" data-fullwidthcentering="on" alt="">
+                <div class="caption large_text sft"
+                   data-x="660"
+                   data-y="54"
+                   data-speed="300"
+                   data-start="800"
+                   data-easing="easeOutExpo"  > LEARN</div>
+                <div class="caption medium_text sfl"
+                   data-x="689"
+                   data-y="92"
+                   data-speed="300"
+                   data-start="1100"
+                   data-easing="easeOutExpo"  > </div>
+                <div class="caption large_text sfr"
+                   data-x="738"
+                   data-y="88"
+                   data-speed="300"
+                   data-start="1100"
+                   data-easing="easeOutExpo"  ><span class="dblue">MORE</span>
+                </div>
+             </li>
+          </ul>
+       </div>
+    </div>
+    <!-- Slider End-->
+    <!-- Slogan Start-->
+    <div class="slogan bottom-pad-small">
+       <div class="container">
+          <div class="row">
+             <div class="slogan-content">
+                <div class="col-lg-9 col-md-9">
+                   <h2 class="slogan-title">We design and develop the DeepTMpred server!</h2>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                   <div class="get-started">
+                      <button class="btn btn-special btn-color pull-right">Get Started Now</button>
+                   </div>
+                </div>
+                <div class="clearfix"></div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <!-- Slogan End-->
+    <!-- Main Content start-->
+    <div class="main-content">
+       <div class="container">
+          <div class="row">
+             <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="content-box big ch-item bottom-pad-small">
+                   <div class="ch-info-wrap">
+                      <div class="ch-info">
+                         <div class="ch-info-front ch-img-1"><i class="icon-fullscreen"></i></div>
+                         <div class="ch-info-back">
+                            <i class="icon-fullscreen"></i>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="content-box-info">
+                      <h3>Motivations</h3>
+                      <p>
+                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                      </p>
+                      <a href="#">Read More <i class="icon-angle-right"></i><i class="icon-angle-right"></i></a>
+                   </div>
+                </div>
+             </div>
+             <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="content-box big ch-item bottom-pad-small">
+                   <div class="ch-info-wrap">
+                      <div class="ch-info">
+                         <div class="ch-info-front ch-img-1"><i class="icon-eye-open"></i></div>
+                         <div class="ch-info-back">
+                            <i class="icon-eye-open"></i>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="content-box-info">
+                      <h3>Workflow</h3>
+                      <p>
+                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                      </p>
+                      <a href="#">Read More <i class="icon-angle-right"></i><i class="icon-angle-right"></i></a>
+                   </div>
+                </div>
+             </div>
+             <div class="col-lg-4 col-md-4 col-sm-4">
+                <div class="content-box big ch-item">
+                   <div class="ch-info-wrap">
+                      <div class="ch-info">
+                         <div class="ch-info-front ch-img-1"><i class="icon-edit"></i></div>
+                         <div class="ch-info-back">
+                            <i class="icon-edit"></i>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="content-box-info">
+                      <h3>Results</h3>
+                      <p>
+                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                      </p>
+                      <a href="#">Read More <i class="icon-angle-right"></i><i class="icon-angle-right"></i></a>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <!-- Main Content end-->
+
+    <!-- Features start -->
+    <div class="features bottom-pad">
+       <div class="container">
+          <div class="row">
+             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h3  class="title">Our Services</h3>
+                <div class="row">
+                   <div class="circular-nav">
+                      <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 animate_afl">
+                         <div id="cn-tabs">
+                            <div class="service service-1">
+                               <div class="cn-content">
+                                  <h4>Premium Sliders</h4>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <a href="#">Read More <i class="icon-angle-right"></i><i class="icon-angle-right"></i></a>
+                                  <div class="clearfix"></div>
+                               </div>
+                               <div class="clearfix"></div>
+                            </div>
+                            <div class="service service-2">
+                               <div class="cn-content">
+                                  <h4>Unlimited Colors</h4>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <a href="#">Read More <i class="icon-angle-right"></i><i class="icon-angle-right"></i></a>
+                                  <div class="clearfix"></div>
+                               </div>
+                            </div>
+                            <div class="service service-3">
+                               <div class="cn-content">
+                                  <h4>Shortcodes</h4>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <a href="#">Read More <i class="icon-angle-right"></i><i class="icon-angle-right"></i></a>
+                               </div>
+                               <div class="clearfix"></div>
+                            </div>
+                            <div class="service service-4">
+                               <div class="cn-content">
+                                  <h4>300+ Icons</h4>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <a href="#">Read More <i class="icon-angle-right"></i><i class="icon-angle-right"></i></a>
+                               </div>
+                               <div class="clearfix"></div>
+                            </div>
+                            <div class="service service-5">
+                               <div class="cn-content">
+                                  <h4>HTML5 / CSS3</h4>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <a href="#">Read More <i class="icon-angle-right"></i><i class="icon-angle-right"></i></a>
+                               </div>
+                               <div class="clearfix"></div>
+                            </div>
+                            <div class="service service-6">
+                               <div class="cn-content">
+                                  <h4>After Sale Support</h4>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <a href="#">Read More <i class="icon-angle-right"></i><i class="icon-angle-right"></i></a>
+                               </div>
+                               <div class="clearfix"></div>
+                            </div>
+                            <div class="service service-7">
+                               <div class="cn-content">
+                                  <h4>Google Fonts</h4>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <a href="#">Read More <i class="icon-angle-right"></i><i class="icon-angle-right"></i></a>
+                               </div>
+                               <div class="clearfix"></div>
+                            </div>
+                            <div class="service service-8">
+                               <div class="cn-content">
+                                  <h4>Ajax Contact Form</h4>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <a href="#">Read More <i class="icon-angle-right"></i><i class="icon-angle-right"></i></a>
+                               </div>
+                               <div class="clearfix"></div>
+                            </div>
+                            <div class="service service-9">
+                               <div class="cn-content">
+                                  <h4>Valid HTML Files</h4>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                                  <a href="#">Read More <i class="icon-angle-right"></i><i class="icon-angle-right"></i></a>
+                               </div>
+                               <div class="clearfix"></div>
+                            </div>
+                         </div>
+                         <div class="clearfix"></div>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1 animate_afr">
+                         <div class="cn-wrapper">
+                            <ul>
+                               <li class="circle-1 circle"><a class="active" href="#"><span class="icon-picture"></span></a></li>
+                               <li class="circle-2 circle"><a href="#"><span class="icon-rocket"></span></a></li>
+                               <li class="circle-3 circle"><a href="#"><span class="icon-puzzle-piece"></span> </a></li>
+                               <li class="circle-4 circle"><a href="#"><span class="icon-thumbs-up-alt"></span></a></li>
+                               <li class="circle-5 circle"><a href="#"><span class="icon-html5"></span></a></li>
+                               <li class="circle-6 circle"><a href="#"><span class="icon-user"></span></a></li>
+                               <li class="circle-7 circle"><a href="#"><span class="icon-google-plus"></span> </a></li>
+                               <li class="circle-8 circle"><a href="#"><span class="icon-envelope-alt"></span></a></li>
+                               <li class="circle-9 circle"><a href="#"><span class="icon-hand-right"></span></a></li>
+                            </ul>
+                            <div class="clearfix"></div>
+                         </div>
+                      </div>
+                      <div class="clearfix"></div>
+                   </div>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+    <!-- Features End -->
+    </div>
+    <!-- Content End -->
+{% endblock %}
+
+
+{% block js %}
+    <script>
+
+    </script>
+{% endblock %}

@@ -1,0 +1,132 @@
+{% extends 'app_new/layout/basic.html' %}
+{% load static %}
+
+{% block title %} init {% endblock %}
+
+
+{% block css %}
+<!--    <link rel="stylesheet" href="{% static 'css/account.css' %}">-->
+    <style>
+        form{
+            border: 1px solid rgb(221,221,221);
+            border-radius: 4px;
+        }
+        form > div{
+            margin: 15px;
+        }
+        #sequence, #inputEmail{
+            max-width: 700px;
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <p style="font-size:16px; margin: 40px 0px 20px;">
+            The server allows users to paste sequence and get the predicted transmembrane.
+        </p>
+        <h3><B>Submit</B></h3>
+<!--        <div class="alert alert-warning" role="alert"><span style="font-weight: bold">Note</span>: signal peptide should be removed by the <a href="http://www.cbs.dtu.dk/services/SignalP/" style="color:rgb(198,96,15)">SignalP-5.0 Server</a>!</div>-->
+        <form method="post" action="{% url 'submit_job' %}" enctype="multipart/form-data" id="form">
+            {% csrf_token %}
+            <div>
+                <ul class="nav nav-tabs">
+                    <li class="active">
+                        <a id="seq-tab" href="#seq" data-toggle="tab">Sequence</a>
+                    </li>
+                    <!--<li>
+                        <a id="file-tab" href="#file" data-toggle="tab">File</a>
+                    </li>-->
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div id="seq" class="tab-pane fade active in" aria-labelledby="seq-tab">
+                    <h4>
+                        sequence (in FASTA format)
+                        <button type="button" value="Example" class="btn btn-primary btn-sm" id="example" >example</button>
+                    </h4>
+                    <textarea class="form-control" id="sequence" name="sequence" rows="8"></textarea>
+                    <p class="text-danger hidden" id="seqdanger1">* Please input a sequence!</p>
+                    <p class="text-danger hidden" id="seqdanger2">* Characters other than letters are not allowed!</p>
+                </div>
+                <!--<div id="file" class="tab-pane fade" aria-labelledby="file-tab">
+                    <h4>The file uploaded should contains only protein sequence in FASTA format.</h4>
+                    <input type="file" name="seqfile" id="inputFile">
+                    <p class="text-danger hidden" id="filedanger1">* Please upload a sequence file!</p>
+                </div>-->
+            </div>
+            <div>
+                <h4>Email</h4>
+                <input class="form-control" type="email" name="email" id="inputEmail">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-default btn-primary" id="submit" value="submit" name="submit">Submit</button>
+                <button type="reset" class="btn btn-default btn-primary" >Reset</button>
+            </div>
+        </form>
+        <h3>Reference</h3>
+        <p>
+            1. Qiang Shi, Weiya Chen,Siqi Huang, Fanglin Jin, Yinghao Dong, Yan Wang, Zhidong Xue. DNN-Dom: predicting protein domain boundary from sequence alone by deep neural network. (submitted, Feb.2019).
+        </p>
+
+        <div style="height: 300px"></div>
+    </div>
+{% endblock %}
+
+
+{% block js %}
+    <script>
+        $(document).ready(function(){
+
+            $("#example").click(function(){
+                $("#sequence").val(">example\nAPGSEGIWLWLGTAGMFLGMLYFIARGWGETDGRRQKFYIATILITAIAFVNYLAMALGFGLTFIEFGGEQHPIYWARYTDWLFTTPLLLYNLGLLAGADRNTIYSLVSLDVLMIGTGVVATLSAGSGVLSAGAERLVWWGISTAFLLVLLYFLFSSLSGRVANLPSDTRSTFKTLRNLVTVVWLVYPVWWLVGSEGLGLVGIGIETAGFMVIDLVAVGFGIILLRSHGVLDGAA");
+            });
+            $(".close").click(function(){
+                $(this).parent().addClass("hidden");
+            });
+            $("#form").submit(function(){
+                if($("#seq").hasClass("active")){
+                    $("#seqdanger1").addClass("hidden");
+                    $("#seqdanger2").addClass("hidden");
+                    var seq = $("#sequence").val().trim();
+                    if(!seq){
+                        $("#seqdanger1").removeClass("hidden");
+                        $("#sequence").focus();
+                        return false;
+                    }else{
+                        if(seq.substr(0,1) == ">"){
+                            for(var i=0; i<seq.length; i++){
+                                if(seq.substr(i,1) == "\n"){
+                                    break
+                                }
+                            }
+                            seq = seq.substr(i+1);
+                        }
+                        seq = seq.replace(/[\r\n ]/g, "");
+                        //console.log(seq);
+                        var proteinseq = /^[a-zA-Z]+$/;
+                        if(!proteinseq.test(seq)){
+                            $("#seqdanger2").removeClass("hidden");
+                            $("#sequence").focus();
+                            return false;
+                        }
+                    }
+                }else if($("#file").hasClass("active")){
+                    $("#sequence").val("");
+                    $("#filedanger1").addClass("hidden");
+                    var file = $("#inputFile").val();
+                    //alert(file);
+                    //return false;
+                    if(!file){
+                        $("#filedanger1").removeClass("hidden");
+                        $("#file").focus();
+                        return false;
+                    }
+                }else{
+                    return false;
+                }
+            });
+        });
+    </script>
+{% endblock %}
